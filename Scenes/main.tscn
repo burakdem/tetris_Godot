@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqy3flxgyc22p"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_gpro0"]
+[ext_resource type="Script" path="res://Scripts/gridManager.gd" id="2_g717c"]
+[ext_resource type="Script" path="res://Scripts/pietro.gd" id="3_ced0u"]
+[ext_resource type="Shader" path="res://shaders/Filler.gdshader" id="3_e2y7q"]
+[ext_resource type="Texture2D" uid="uid://3xe4lfkqk0dc" path="res://icon.svg" id="4_3fwet"]
+[ext_resource type="Script" path="res://Scripts/spawnManager.gd" id="5_l4b7u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxgk7"]
+shader = ExtResource("3_e2y7q")
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_gpro0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="gridManager" type="Node2D" parent="."]
+script = ExtResource("2_g717c")
+
+[node name="Filler" type="Sprite2D" parent="gridManager"]
+material = SubResource("ShaderMaterial_kxgk7")
+position = Vector2(210, 210)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_3fwet")
+
+[node name="pietro" type="Node2D" parent="."]
+script = ExtResource("3_ced0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="pietro"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_3fwet")
+
+[node name="spawnManager" type="Node2D" parent="."]
+script = ExtResource("5_l4b7u")
