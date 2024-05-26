@@ -3,9 +3,9 @@ extends Node2D
 var grid = []
 var backGrid = []
 var spawnPosition
-var pierPosition = []
-var pierTeam = []
-var pierOldTeam = []
+var piecePosition = []
+var pieceTeam = []
+var pieceOldTeam = []
 
 var moveDirection
 
@@ -55,52 +55,52 @@ func setCameraPosition():
 	camera_2d.position = Vector2(x , y)
 
 func shapeSpawn():
-	pierPosition.clear()
-	pierTeam.clear()
+	piecePosition.clear()
+	pieceTeam.clear()
 	spawn_manager.pieceShapeMaker()
 	for cell in spawn_manager.pieceShape:
-		var pier = pietro.duplicate()
+		var piece = pietro.duplicate()
 		var pos_x = (cell.x * gridSize) + (gridSize / 2)
 		var pos_y = (cell.y * gridSize) + (gridSize / 2)
-		pier.position = Vector2(pos_x, pos_y)
-		pierTeam.append(pier)
-		add_child(pier)
-		pierPosition.append(pier.position)
-	print("pierPosition at Spawn is ", pierPosition)
+		piece.position = Vector2(pos_x, pos_y)
+		pieceTeam.append(piece)
+		add_child(piece)
+		piecePosition.append(piece.position)
+	print("piecePosition at Spawn is ", piecePosition)
 
 func shapeMoveCheck(dir):
-	var pierDownPosition = []
-	var pierLeftPosition = []
-	var pierRightPosition = []
+	var pieceDownPosition = []
+	var pieceLeftPosition = []
+	var pieceRightPosition = []
 	var availableMove = false
 	if dir == 0:
-		for cell in pierPosition:
+		for cell in piecePosition:
 			var x = cell.x
 			var y = cell.y + gridSize
-			pierDownPosition.append(Vector2(x, y))
-		for move in pierDownPosition:
+			pieceDownPosition.append(Vector2(x, y))
+		for move in pieceDownPosition:
 			if move.y <= gridHeight * gridSize && move not in backGrid:
 				availableMove = true
 			else:
 				availableMove = false
 				break
 	elif dir == 1:
-		for cell in pierPosition:
+		for cell in piecePosition:
 			var x = cell.x +(gridSize * moveDirection)
 			var y = cell.y + gridSize
-			pierRightPosition.append(Vector2(x, y))
-		for move in pierRightPosition:
+			pieceRightPosition.append(Vector2(x, y))
+		for move in pieceRightPosition:
 			if move.x < gridWidth * gridSize && move not in backGrid:
 				availableMove = true
 			else:
 				availableMove = false
 				break
 	elif dir == -1:
-		for cell in pierPosition:
+		for cell in piecePosition:
 			var x = cell.x +(gridSize * moveDirection)
 			var y = cell.y + gridSize
-			pierLeftPosition.append(Vector2(x, y))
-		for move in pierLeftPosition:
+			pieceLeftPosition.append(Vector2(x, y))
+		for move in pieceLeftPosition:
 			if move.x >= 0  && move not in backGrid:
 				availableMove = true
 			else:
@@ -109,35 +109,35 @@ func shapeMoveCheck(dir):
 	return availableMove
 
 func moveShapeDown():
-	var pierNewPosition = []
-	for pier in pierTeam:
+	var pieceNewPosition = []
+	for piece in pieceTeam:
 		var y 
-		y = pier.position.y + gridSize
-		pier.position.y = y
-	for cell in pierPosition:
+		y = piece.position.y + gridSize
+		piece.position.y = y
+	for cell in piecePosition:
 			var x = cell.x
 			var y = cell.y + gridSize
-			pierNewPosition.append(Vector2(x, y))
-	pierPosition.clear()
-	pierPosition = pierNewPosition.duplicate()
+			pieceNewPosition.append(Vector2(x, y))
+	piecePosition.clear()
+	piecePosition = pieceNewPosition.duplicate()
 
 func moveShapeSides():
-	var pierNewPosition = []
-	for pier in pierTeam:
+	var pieceNewPosition = []
+	for piece in pieceTeam:
 		var x 
-		x = pier.position.x + (gridSize * moveDirection)
-		pier.position.x = x
-	for cell in pierPosition:
+		x = piece.position.x + (gridSize * moveDirection)
+		piece.position.x = x
+	for cell in piecePosition:
 			var x = cell.x + (gridSize * moveDirection)
 			var y = cell.y
-			pierNewPosition.append(Vector2(x, y))
-	pierPosition.clear()
-	pierPosition = pierNewPosition.duplicate()
+			pieceNewPosition.append(Vector2(x, y))
+	piecePosition.clear()
+	piecePosition = pieceNewPosition.duplicate()
 
 func changePiece():
-	for pier in pierTeam:
-		pierOldTeam.append(pier)
-	for piece in pierPosition:
+	for piece in pieceTeam:
+		pieceOldTeam.append(piece)
+	for piece in piecePosition:
 		backGrid.append(piece)
 	shapeSpawn()
 	print("backGrid is ", backGrid)
