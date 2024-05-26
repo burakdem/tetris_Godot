@@ -3,6 +3,7 @@ extends Node2D
 var grid = []
 
 @onready var filler = $Filler
+@onready var back_filler = $backFiller
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,4 +29,12 @@ func fillGrid():
 			var y = cell.y
 			var BGPiece = filler.duplicate()
 			BGPiece.position = Vector2(x, y)
+			add_child(BGPiece)
+
+func fillBackGrid():
+	var _backgrid = get_parent().backGrid
+	if _backgrid.size() > 0:
+		for piece in _backgrid:
+			var BGPiece = back_filler.duplicate()
+			BGPiece.position = piece
 			add_child(BGPiece)

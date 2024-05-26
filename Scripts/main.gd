@@ -136,8 +136,10 @@ func moveShapeSides():
 
 func changePiece():
 	for piece in pieceTeam:
+		!piece.visible
 		pieceOldTeam.append(piece)
 	for piece in piecePosition:
 		backGrid.append(piece)
+	grid_manager.fillBackGrid()
 	shapeSpawn()
 	print("backGrid is ", backGrid)

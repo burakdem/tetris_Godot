@@ -1,18 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqy3flxgyc22p"]
+[gd_scene load_steps=8 format=3 uid="uid://cqy3flxgyc22p"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_gpro0"]
 [ext_resource type="Script" path="res://Scripts/gridManager.gd" id="2_g717c"]
 [ext_resource type="Shader" path="res://shaders/backFiller.gdshader" id="3_akea0"]
 [ext_resource type="Script" path="res://Scripts/pietro.gd" id="3_ced0u"]
-[ext_resource type="Shader" path="res://shaders/Filler.gdshader" id="3_e2y7q"]
 [ext_resource type="Texture2D" uid="uid://3xe4lfkqk0dc" path="res://icon.svg" id="4_3fwet"]
 [ext_resource type="Script" path="res://Scripts/spawnManager.gd" id="5_l4b7u"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2naji"]
-shader = ExtResource("3_akea0")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxgk7"]
-shader = ExtResource("3_e2y7q")
+shader = ExtResource("3_akea0")
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_gpro0")
@@ -22,13 +18,13 @@ script = ExtResource("1_gpro0")
 [node name="gridManager" type="Node2D" parent="."]
 script = ExtResource("2_g717c")
 
-[node name="backFiller" type="Sprite2D" parent="gridManager"]
-top_level = true
-material = SubResource("ShaderMaterial_2naji")
+[node name="Filler" type="Sprite2D" parent="gridManager"]
+material = SubResource("ShaderMaterial_kxgk7")
+position = Vector2(210, 210)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_3fwet")
 
-[node name="Filler" type="Sprite2D" parent="gridManager"]
+[node name="backFiller" type="Sprite2D" parent="gridManager"]
 material = SubResource("ShaderMaterial_kxgk7")
 position = Vector2(210, 210)
 scale = Vector2(0.5, 0.5)
