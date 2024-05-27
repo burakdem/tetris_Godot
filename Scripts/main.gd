@@ -82,6 +82,7 @@ func shapeMoveCheck(dir):
 			if move.y <= gridHeight * gridSize && move not in backGrid:
 				availableMove = true
 			else:
+				print("no move")
 				availableMove = false
 				break
 	elif dir == 1:
@@ -93,6 +94,7 @@ func shapeMoveCheck(dir):
 			if move.x < gridWidth * gridSize && move not in backGrid:
 				availableMove = true
 			else:
+				print("no move")
 				availableMove = false
 				break
 	elif dir == -1:
@@ -104,6 +106,7 @@ func shapeMoveCheck(dir):
 			if move.x >= 0  && move not in backGrid:
 				availableMove = true
 			else:
+				print("no move")
 				availableMove = false
 				break
 	return availableMove
