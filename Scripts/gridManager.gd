@@ -35,6 +35,7 @@ func fillBackGrid():
 	var _backgrid = get_parent().backGrid
 	if _backgrid.size() > 0:
 		for piece in _backgrid:
+			back_filler.visible
 			var BGPiece = back_filler.duplicate()
 			BGPiece.position = piece
 			add_child(BGPiece)

@@ -60,6 +60,8 @@ func shapeSpawn():
 	spawn_manager.pieceShapeMaker()
 	for cell in spawn_manager.pieceShape:
 		var piece = pietro.duplicate()
+		var childSprite = piece.get_node("Sprite2D")
+		childSprite.visible = true
 		var pos_x = (cell.x * gridSize) + (gridSize / 2)
 		var pos_y = (cell.y * gridSize) + (gridSize / 2)
 		piece.position = Vector2(pos_x, pos_y)
@@ -88,7 +90,7 @@ func shapeMoveCheck(dir):
 	elif dir == 1:
 		for cell in piecePosition:
 			var x = cell.x +(gridSize * moveDirection)
-			var y = cell.y + gridSize
+			var y = cell.y
 			pieceRightPosition.append(Vector2(x, y))
 		for move in pieceRightPosition:
 			if move.x < gridWidth * gridSize && move not in backGrid:
@@ -100,7 +102,7 @@ func shapeMoveCheck(dir):
 	elif dir == -1:
 		for cell in piecePosition:
 			var x = cell.x +(gridSize * moveDirection)
-			var y = cell.y + gridSize
+			var y = cell.y
 			pieceLeftPosition.append(Vector2(x, y))
 		for move in pieceLeftPosition:
 			if move.x >= 0  && move not in backGrid:
